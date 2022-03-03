@@ -2,11 +2,15 @@ package Task2;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
+        ListNode head1 = new ListNode(2);
+        head1.next = new ListNode(4);
+        head1.next.next = new ListNode(3);
 
-        ListNode node1 = new ListNode(342);
-        ListNode node2 = new ListNode(465);
+        ListNode head2 = new ListNode(5);
+        head2.next = new ListNode(6);
+        head2.next.next = new ListNode(4);
 
-        System.out.println(addTwoNumbers(node1, node2));
+        System.out.println(addTwoNumbers(head1, head2));
 
 
     }
@@ -29,8 +33,8 @@ public class AddTwoNumbers {
 
         @Override
         public String toString() {
-            return  val + ""
-                   + next ;
+            return val + ""
+                    + next;
         }
     }
 
