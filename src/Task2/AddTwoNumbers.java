@@ -1,5 +1,7 @@
 package Task2;
 
+import java.util.ListIterator;
+
 public class AddTwoNumbers {
     public static void main(String[] args) {
         ListNode head1 = new ListNode(2);
@@ -11,8 +13,6 @@ public class AddTwoNumbers {
         head2.next.next = new ListNode(4);
 
         System.out.println(addTwoNumbers(head1, head2));
-
-
     }
 
     public static class ListNode {
@@ -39,34 +39,31 @@ public class AddTwoNumbers {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = new ListNode(0);
-        ListNode pointer1 = l1;
-        ListNode pointer2 = l2;
-        ListNode currentNode = result;
 
-        int tenBox = 0;
+        ListNode head = new ListNode(0);
+        ListNode l3 = head;
 
-        while (pointer1 != null || pointer2 != null) {
-            int pointer1Value = (pointer1 == null) ? 0 : pointer1.val;
-            int pointer2Value = (pointer2 == null) ? 0 : pointer2.val;
+        int carry = 0;
 
-            int sum = pointer1Value + pointer2Value + tenBox;
-            tenBox = sum / 10;
-            currentNode.next = new ListNode(sum % 10);
-            currentNode = currentNode.next;
+        while (l1 != null || l2 != null) {
 
-            if (pointer1 != null) {
-                pointer1 = pointer1.next;
-            }
+            int valueL1 = (l1 != null) ? l1.val : 0; //
+            int valueL2 = (l2 != null) ? l2.val : 0; // 5
 
-            if (pointer2 != null) {
-                pointer2 = pointer2.next;
-            }
+            int summ = valueL1 + valueL2 + carry; // 2 + 5 + 0
+            carry = summ / 10; // 7 / 10 = 0
+            int remainder = summ % 10; // 7 % 10 = 0
+
+            l3.next = new ListNode(remainder);//0 null
+            l3 = l3.next;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
 
-        if (tenBox > 0) {
-            currentNode.next = new ListNode(tenBox);
+        if (carry > 0) {
+            l3.next = new ListNode(carry);
         }
-        return result.next;
+        return head.next;
     }
 }
