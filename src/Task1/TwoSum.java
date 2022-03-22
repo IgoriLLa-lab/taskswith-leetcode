@@ -37,16 +37,12 @@ public class TwoSum {
     //Second option. complexity - O(N).
     public static int[] twoSumHashM(int[] num, int target) {
         Map<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < num.length; i++) {
-            map.put(num[i], i);
-        }
         for (int i = 0; i < num.length; i++) {
             int desiredNumber = target - num[i];
-
             if (map.containsKey(desiredNumber) && map.get(desiredNumber) != i) {
-                return new int[]{i, map.get(desiredNumber)};
+                return new int[]{map.get(desiredNumber), i};
             }
+            map.put(num[i], i);
         }
         throw new IllegalArgumentException("Not found indices of the two numbers, " +
                 "since the numbers are not in the array");
